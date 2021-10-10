@@ -10,4 +10,5 @@ public interface NewsRepository  extends ReactiveMongoRepository<News, String>{
 	@Tailable
 	@Query("{}")
 	Flux<News> mFindAll();
+
 }

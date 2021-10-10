@@ -21,14 +21,14 @@ public class NewsCraw {
 
 		for (int i = 1; i < 6; i++) {
 			String aid = String.format("%010d", aidNum);
-			String url = "https://news.naver.com/main/read.naver?mode=LSD&mid=shm&sid1=102&oid=022&aid=" + aid;
+			String url = "https://news.naver.com/main/read.naver?mode=LSD&mid=shm&sid1=103&oid=437&aid=" + aid;
 
 			try {
 				String html = rt.getForObject(url, String.class);
 
 				Document doc = Jsoup.parse(html);
 
-				Element companyElement = doc.selectFirst(".article_header .press_logo img");
+				Element companyElement = doc.selectFirst("#main_content > div.article_header > div.press_logo > a > img");
 				Element titleElement = doc.selectFirst("#articleTitle");
 				Element createdAtElement = doc.selectFirst(".t11");
 				String company = companyElement.attr("alt");

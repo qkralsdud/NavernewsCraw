@@ -17,7 +17,7 @@ public class NewsBatch {
 	private final NewsRepository newsRepository;
 	private final NewsCraw newscraw;
 	
-	@Scheduled(fixedDelay = 1000*60*1)
+	@Scheduled(cron = "0 0 1 * * *")
 	public void newsCrawSave() {
 		List<News> newList = newscraw.collect();
 		newsRepository.saveAll(newList);

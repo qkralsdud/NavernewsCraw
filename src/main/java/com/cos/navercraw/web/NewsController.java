@@ -21,4 +21,5 @@ public class NewsController {
 		return newsRepository.mFindAll()
 				.subscribeOn(Schedulers.boundedElastic());
 	}
+	
 }

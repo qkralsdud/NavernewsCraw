@@ -1,5 +1,7 @@
 package com.cos.navercraw.util;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +35,11 @@ public class NewsCraw {
 				Element createdAtElement = doc.selectFirst(".t11");
 				String company = companyElement.attr("alt");
 				String title = titleElement.text();
-				String createdAt = createdAtElement.text();
+				String cAt = createdAtElement.text();
+				
+				Timestamp tcAt =  Timestamp.valueOf(cAt);
+				LocalDateTime lcAt = tcAt.toLocalDateTime().minusDays(1).plusHours(9);
+				Timestamp createdAt = Timestamp.valueOf(lcAt);
 
 				News news = News.builder().company(company).title(title).createdAt(createdAt).build();
 

@@ -17,7 +17,7 @@ public class NewsBatch {
 	private final NewsRepository newsRepository;
 	private final NewsCraw newscraw;
 	
-	@Scheduled(cron = "0 0 1 * * *")
+	@Scheduled(cron = "0 0 1 * * *", zone = "Asia/Seoul")
 	public void newsCrawSave() {
 		List<News> newList = newscraw.collect();
 		newsRepository.saveAll(newList);

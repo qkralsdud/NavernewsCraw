@@ -40,10 +40,19 @@ public class NewsCraw {
 				Timestamp tcAt =  Timestamp.valueOf(cAt);
 				LocalDateTime lcAt = tcAt.toLocalDateTime().minusDays(1).plusHours(9);
 				Timestamp createdAt = Timestamp.valueOf(lcAt);
-
-				News news = News.builder().company(company).title(title).createdAt(createdAt).build();
-
-				newsList.add(news);
+				
+				LocalDateTime startTime = LocalDateTime.now().minusDays(1).plusHours(9);
+				Timestamp startTs = Timestamp.valueOf(startTime);
+				
+				if(createdAt == startTs) {
+					News news = News.builder().company(company).title(title).createdAt(createdAt).build();
+					
+					newsList.add(news);					
+				} else {
+					Exception e = new Exception();
+					System.out.println("오류:" + e.getMessage());
+				}
+				
 			} catch (Exception e) {
 				System.out.println("오류:" + e.getMessage());
 			} 
